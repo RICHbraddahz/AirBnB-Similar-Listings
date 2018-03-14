@@ -15,7 +15,7 @@ const PROXY_PORT = parseInt(process.env.PROXY_PORT, 10);
 const app = express();
 
 const PUBLIC_DIR = path.join(__dirname, '../public');
-
+//hi
 app.use(morgan('dev'));
 app.use(cors(`http://${HOST}:${PROXY_PORT}`))
 app.use('/listings/:id', express.static(PUBLIC_DIR));
