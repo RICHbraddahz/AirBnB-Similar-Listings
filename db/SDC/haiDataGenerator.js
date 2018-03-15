@@ -66,17 +66,6 @@ const settings = {
   },
 };
 
-let generateTenMilSimilarListings = (settings) => {
-
-  for (let i = 0; i < 20; i += 1) {
-    for (let j = 0; j < 500; j += 1) {
-      let listing = generateOneSimilarListing( i * j + j, )
-    }
-  }
-  let listing = generate
-
-}
-
 let generateOneSimilarListing = (id) => {
   return = {
     id: id,
@@ -118,3 +107,15 @@ let generateOneSimilarListing = (id) => {
       };  
 }
 
+let generateTenMilSimilarListings = (settings) => {
+  let similarListings = [];
+  for (let i = 0; i < 20; i += 1) {
+    for (let j = 0; j < 500; j += 1) {
+      let listingObj = generateOneSimilarListing( i * j + j );
+      similarListings.push(listingObj);
+    }
+    console.log(`just inserted ${i*j+j}`);
+  }
+}
+
+generateTenMilSimilarListings(settings)
