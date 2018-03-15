@@ -1,46 +1,14 @@
-const mongoose = require('mongoose');
-const listings = require('./listing');
-const mockData = require('./mock-data');
-const mongoose = require('mongoose');
+const mongo = require('mongodb');
+let getSimilarListings = require('./haiDataGenerator').getSimilarListings
 
-mongoose.Promise = Promise;
+var url = "mongodb://localhost:27017/";
 
-mongoose.connect(`mongodb://localhost/similar-listings`);
-const db = mongoose.connection;
-
-const similarListingSchema = mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true
-  },
-  url: String,
-  title: String,
-  type: String,
-  numBeds: Number,
-  price: Number,
-  numRatings: Number,
-  avgStars: Number,
-  thumbnailImage: String,
-  sharedListings: Array,
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("seabnb");
+  dbo.createCollection("similar-listings-v1", function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    db.close();
+  });
 });
-
-const similarListing = mongoose.model('similarListing', similarListingSchema);
-
-// async function seedDb(data) {
-//   try {
-//     const results = await listings.insertMany(data);
-//     console.log(
-//       'done seeding database:\n',
-//       `inserted ${results.length} records`,
-//     );
-//     db.close();
-//   } catch (error) {
-//     console.log(
-//       'error seeding database\n',
-//       error,
-//     );
-//     db.close();
-//   }
-// }
-
-// seedDb(mockData);

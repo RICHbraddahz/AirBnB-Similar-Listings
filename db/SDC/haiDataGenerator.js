@@ -1,9 +1,4 @@
 const faker = require('faker');
-const fs = require('fs');
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-
-mongoose.Promise = Promise;
 
 // get a random number between min(inclusive) and max(non-inclusive).
 // [decimalPlaces]: optional. default to 0(integer) if not provided
@@ -67,7 +62,7 @@ const settings = {
 };
 
 let generateOneSimilarListing = (id) => {
-  return = {
+  return {
     id: id,
 
     title: faker.lorem.words(getRandomNum(
@@ -107,15 +102,20 @@ let generateOneSimilarListing = (id) => {
       };  
 }
 
-let generateTenMilSimilarListings = (settings) => {
+let generateTenMilSimilarListings = () => {
   let similarListings = [];
   for (let i = 0; i < 20; i += 1) {
-    for (let j = 0; j < 500; j += 1) {
+    for (let j = 0; j < 3; j += 1) {
       let listingObj = generateOneSimilarListing( i * j + j );
       similarListings.push(listingObj);
     }
-    console.log(`just inserted ${i*j+j}`);
+    console.log(`just inserted ${i}`);
   }
+  return similarListings;
 }
 
-generateTenMilSimilarListings(settings)
+var test = generateTenMilSimilarListings(settings);
+var test2 = generateOneSimilarListing(10);
+console.log(test2);
+
+module.exports = generateTenMilSimilarListings
