@@ -112,7 +112,7 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
 
 const async generateTenMilSimilarListings = (collection, time) => {
   for (let i = 0; i < 1000; i += 1) {
-    await barchInsertSimilarListing(i);
+    await batchInsertSimilarListing(i, collection);
     console.log(`just finished inserting batch ${i}`);
   }
   const timeNow = Date().getTime();
