@@ -102,7 +102,7 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
   let similarListings = [];
 
   for (let i = 0; i < 1000; i += 1) {
-    similarListings.push(generateOneSimilarListing(batchNumber * i + i));
+    similarListings.push(generateOneSimilarListing((batchNumber * i) + i));
   }
 
   return insertIntoDatabase(collection, similarListings)
