@@ -60,7 +60,7 @@ const settings = {
 };
 
 const generateOneSimilarListing = id => ({
-  id,
+  id: id,
 
   title: faker.lorem.words(getRandomNum(
     settings.title.minWords,
@@ -96,6 +96,8 @@ const generateOneSimilarListing = id => ({
                     `?image=${id}`,
 });
 
+const insertIntoDatabase = (collection, array) => collection.insertMany(array);
+
 const batchInsertSimilarListings = (batchNumber, collection) => {
   let similarListings = [];
 
@@ -110,13 +112,13 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
     });
 }
 
-const async generateTenMilSimilarListings = (collection, time) => {
-  for (let i = 0; i < 1000; i += 1) {
-    await batchInsertSimilarListing(i, collection);
+const generateTenMilSimilarListings = async (collection, time) => {
+  for (let i = 0; i < 10000; i += 1) {
+    await batchInsertSimilarListings(i, collection);
     console.log(`just finished inserting batch ${i}`);
   }
-  const timeNow = Date().getTime();
+  const timeNow = new Date().getTime();
   console.log(`${(timeNow - time) / 1000} seconds have passed`);
 };
 
-module.exports = generateTenMilSimilarListings;
+module.exports = { generateTenMilSimilarListings };
