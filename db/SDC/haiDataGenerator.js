@@ -96,21 +96,27 @@ const generateOneSimilarListing = id => ({
                     `?image=${id}`,
 });
 
-const generateTenMilSimilarListings = () => {
-  const similarListings = [];
-  for (let i = 0; i < 20; i += 1) {
-    for (let j = 0; j < 3; j += 1) {
-      const listingObj = generateOneSimilarListing(i * j + j);
-      similarListings.push(listingObj);
-    }
-    console.log(`just inserted ${i}`);
+const batchInsertSimilarListings = (batchNumber, collection) => {
+  let similarListings = [];
+
+  for (let i = 0; i < 1000; i += 1) {
+    similarListings.push(generateOneSimilarListing(batchNumber * i + i));
   }
-  return similarListings;
+
+  return insertIntoDatabase(collection, similarListings)
+    .catch((e) => {
+      console.error(e);
+      client.close();
+    });
+}
+
+const async generateTenMilSimilarListings = (collection, time) => {
+  for (let i = 0; i < 1000; i += 1) {
+    await barchInsertSimilarListing(i);
+    console.log(`just finished inserting batch ${i}`);
+  }
+  const timeNow = Date().getTime();
+  console.log(`${(timeNow - time) / 1000} seconds have passed`);
 };
 
-const test = generateTenMilSimilarListings(settings);
-const test2 = generateOneSimilarListing(10);
-console.log(test2);
-
-
-module.exports = generateOneSimilarListing;
+module.exports = generateTenMilSimilarListings;
