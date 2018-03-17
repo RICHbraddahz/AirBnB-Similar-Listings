@@ -1,4 +1,8 @@
-const pgp = require('pg-promise')();
+const pgp = require('pg-promise')({
+  capSQL: true // generate capitalized SQL 
+});
+const faker = require('faker');
+const { generateOneSimilarListing } = require('./dataGenerator');
 
 const cn = {
   host: 'localhost',
@@ -8,31 +12,45 @@ const cn = {
   password: 'student',
 };
 
-const db = pgp(cn);
+const db = pgp('postgres://localhost:5432/seabnb');
 
 const cs = new pgp.helpers.ColumnSet(
-  ['id', 'title', 'type', 'price', 'numRatings', 'avgStars', 'thumbnailImage'],
-  { table: 'list' },
+  ['id', 'title', 'type', 'numbeds', 'price', 'numratings', 'avgstars', 'thumbnailimage'],
+  { table: 'similarlistings' },
 );
 
-const insert = pgp.helpers.insert(data, cs);
+function getNextData(t, pageIndex) {
+  let data = null;
+  if (pageIndex < 1000) {
+    data = [];
+    for (let i = 0; i < 10000; i += 1) {
+      const idx = (pageIndex * 10000) + i; // to insert unique product names
+      data.push(generateOneSimilarListing(idx));
+    }
+  }
+  return Promise.resolve(data);
+}
 
-db.tx('massive-insert', t => {
-  return t.sequence(index => {
-      return getNextData(t, index)
-          .then(data => {
-              if (data) {
-                  const insert = pgp.helpers.insert(data, cs);
-                  return t.none(insert);
-              }
-          });
-  });
-})
-  .then(data => {
-      // COMMIT has been executed
-      console.log('Total batches:', data.total, ', Duration:', data.duration);
+console.log('starting to seed seed seedddddddd');
+console.log('starting to seed seed seedddddddd');
+console.log('starting to seed seed seedddddddd');
+console.log('starting to seed seed seedddddddd');
+
+db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
+  .then((data) => {
+    if (data) {
+      const insert = pgp.helpers.insert(data, cs);
+      return t.none(insert);
+    }
+  })))
+  .then((data) => {
+    // COMMIT has been executed
+    let seconds = data.duration/1000;
+    console.log('Total batches:', data.total, ', Duration:');
+    console.log(`it took ${seconds} seconds`);
   })
-  .catch(error => {
-      // ROLLBACK has been executed
-      console.log(error);
+  .catch((error) => {
+    // ROLLBACK has been executed
+    console.log(error);
   });
+
