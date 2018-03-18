@@ -93,7 +93,7 @@ const generateOneSimilarListing = id => ({
   thumbnailImage: 'https://picsum.photos/' +
                     `${settings.thumbnailImage.width}/` +
                     `${settings.thumbnailImage.height}` +
-                    `?image=${id}`,
+                    `?image=${getRandomNum(0, 999)}`,
 });
 
 const insertIntoDatabase = (collection, array) => collection.insertMany(array);
