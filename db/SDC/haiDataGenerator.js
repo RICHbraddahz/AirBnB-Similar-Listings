@@ -110,7 +110,7 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
       console.error(e);
       client.close();
     });
-}
+};
 
 const generateTenMilSimilarListings = async (collection, time) => {
   for (let i = 0; i < 10; i += 1) {
