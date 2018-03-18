@@ -60,14 +60,14 @@ const settings = {
 };
 
 const generateOneSimilarListing = id => ({
-  id: id,
+  id,
 
   title: faker.lorem.words(getRandomNum(
     settings.title.minWords,
     settings.title.maxWords,
   )),
 
-  type: pickRandomItem(settings.type.options,),
+  type: pickRandomItem(settings.type.options),
 
   numbeds: getRandomNum(
     settings.numBeds.min,
@@ -93,13 +93,13 @@ const generateOneSimilarListing = id => ({
   thumbnailimage: 'https://picsum.photos/' +
                     `${settings.thumbnailImage.width}/` +
                     `${settings.thumbnailImage.height}` +
-                    `?image=${id}`,
+                    `?image=${getRandomNum(0, 1000)}`,
 });
 
 const insertIntoDatabase = (collection, array) => collection.insertMany(array);
 
 const batchInsertSimilarListings = (batchNumber, collection) => {
-  let similarListings = [];
+  const similarListings = [];
 
   for (let i = 0; i < 1000; i += 1) {
     similarListings.push(generateOneSimilarListing((batchNumber * i) + i));
@@ -110,7 +110,7 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
       console.error(e);
       client.close();
     });
-}
+};
 
 const generateTenMilSimilarListings = async (collection, time) => {
   for (let i = 0; i < 10000; i += 1) {

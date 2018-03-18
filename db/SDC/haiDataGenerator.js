@@ -67,7 +67,7 @@ const generateOneSimilarListing = id => ({
     settings.title.maxWords,
   )),
 
-  type: pickRandomItem(settings.type.options,),
+  type: pickRandomItem(settings.type.options),
 
   numBeds: getRandomNum(
     settings.numBeds.min,
