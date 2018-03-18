@@ -101,8 +101,8 @@ const insertIntoDatabase = (collection, array) => collection.insertMany(array);
 const batchInsertSimilarListings = (batchNumber, collection) => {
   let similarListings = [];
 
-  for (let i = 0; i < 1000; i += 1) {
-    similarListings.push(generateOneSimilarListing((batchNumber * i) + i));
+  for (let j = 0; j < 1000; j += 1) {
+    similarListings.push(generateOneSimilarListing((batchNumber * 1000) + j));
   }
 
   return insertIntoDatabase(collection, similarListings)
@@ -113,7 +113,7 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
 }
 
 const generateTenMilSimilarListings = async (collection, time) => {
-  for (let i = 0; i < 10000; i += 1) {
+  for (let i = 0; i < 10; i += 1) {
     await batchInsertSimilarListings(i, collection);
     console.log(`just finished inserting batch ${i}`);
   }
