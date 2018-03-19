@@ -9,7 +9,7 @@ const database = 'seabnb';
 
 // Use connect method to connect to the server
 console.log('JUST ABOUT TO CONNECT TO ', database);
-MongoClient.connect(`${url}`)
+MongoClient.connect(`${url}/${database}`)
   .then((client) => {
     const db = client.db(database);
     const collection = db.collection('similar-listings');
