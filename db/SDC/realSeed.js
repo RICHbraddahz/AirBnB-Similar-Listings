@@ -21,6 +21,7 @@ MongoClient.connect(`${url}`)
 
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
+        collection.createIndex({ id: 1 });
         console.log('CONGRATS YOU JUST SEEDED 10MILLION');
         client.close();
       });
