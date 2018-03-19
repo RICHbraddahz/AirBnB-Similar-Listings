@@ -23,8 +23,8 @@ function getNextData(t, pageIndex) {
   let data = null;
   if (pageIndex < 1000) {
     data = [];
-    for (let i = 0; i < 1000; i += 1) {
-      const idx = (pageIndex * 1000) + i; // to insert unique product names
+    for (let i = 0; i < 10000; i += 1) {
+      const idx = (pageIndex * 10000) + i; // to insert unique product names
       data.push(generateOneSimilarListing(idx));
     }
   }
