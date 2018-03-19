@@ -45,7 +45,7 @@ db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
   })))
   .then((data) => {
     // COMMIT has been executed
-    let seconds = data.duration/1000;
+    const seconds = data.duration / 1000;
     console.log('Total batches:', data.total, ', Duration:');
     console.log(`it took ${seconds} seconds`);
   })
