@@ -24,7 +24,7 @@ function getNextData(t, pageIndex) {
   if (pageIndex < 1000) {
     data = [];
     for (let i = 0; i < 10000; i += 1) {
-      const idx = (pageIndex * 10000) + i; // to insert unique product names
+      const idx = (pageIndex * 1000) + i; // to insert unique product names
       data.push(generateOneSimilarListing(idx));
     }
   }
@@ -46,8 +46,10 @@ db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
   .then((data) => {
     // COMMIT has been executed
     const seconds = data.duration / 1000;
+    const minutes = Math.floor(seconds / 60);
+    const actualSeconds = seconds - (minutes * 60);
     console.log('Total batches:', data.total, ', Duration:');
-    console.log(`it took ${seconds} seconds`);
+    console.log(`it took ${minutes} minutes and ${actualSeconds} seconds`);
   })
   .catch((error) => {
     // ROLLBACK has been executed
