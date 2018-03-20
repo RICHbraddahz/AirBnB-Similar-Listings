@@ -4,14 +4,6 @@ const pgp = require('pg-promise')({
 const faker = require('faker');
 const { generateOneSimilarListing } = require('./dataGenerator');
 
-const cn = {
-  host: 'localhost',
-  port: 5432,
-  database: 'seabnb',
-  user: 'student',
-  password: 'student',
-};
-
 const db = pgp('postgres://localhost:5432/seabnb');
 
 const cs = new pgp.helpers.ColumnSet(
