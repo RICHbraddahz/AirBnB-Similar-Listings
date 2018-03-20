@@ -33,7 +33,6 @@ db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
     }
   })))
   .then((data) => {
-    // COMMIT has been executed
     const seconds = data.duration / 1000;
     const minutes = Math.floor(seconds / 60);
     const actualSeconds = Math.round(seconds - (minutes * 60));
@@ -41,7 +40,6 @@ db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
     console.log(`it took ${minutes} minutes and ${actualSeconds} seconds`);
   })
   .catch((error) => {
-    // ROLLBACK has been executed
     console.log(error);
   });
 
