@@ -1,4 +1,4 @@
-const { generateTenMilSimilarListings } = require('./haiDataGenerator');
+const { generateTenMilSimilarListings } = require('./dataGenerator');
 const { MongoClient } = require('mongodb');
 
 // Connection URL
@@ -21,7 +21,7 @@ MongoClient.connect(`${url}/${database}`)
 
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
-        collection.createIndex({ id: 1 });
+        // collection.createIndex({ id: 1 });
         console.log('You also successfully indexed the table!');
         client.close();
       });
