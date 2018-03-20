@@ -22,37 +22,30 @@ const settings = {
     min: 0,
     max: 200, // non-inclusive
   },
-
   title: {
     minWords: 2,
     maxWords: 8, // non-inclusive
   },
-
   type: {
     options: ['Entire Place', 'Shared Room', 'Private Room'],
   },
-
   numBeds: {
     min: 1,
     max: 20, // non-inclusive
   },
-
   price: {
     min: 10,
     max: 2000, // non-inclusive
   },
-
   numRatings: {
     min: 0,
     max: 2000, // non-inclusive
   },
-
   avgStars: {
     min: 0,
     max: 6, // non-inclusive
     decimalPlaces: 1,
   },
-
   thumbnailImage: {
     width: 316,
     height: 210,
