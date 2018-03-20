@@ -24,8 +24,6 @@ function getNextData(t, pageIndex) {
 
 console.log('starting to seed seed seedddddddd');
 console.log('starting to seed seed seedddddddd');
-console.log('starting to seed seed seedddddddd');
-console.log('starting to seed seed seedddddddd');
 
 db.tx('massive-insert', t => t.sequence(index => getNextData(t, index)
   .then((data) => {
