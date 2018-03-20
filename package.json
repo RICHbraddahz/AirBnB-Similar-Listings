@@ -16,7 +16,8 @@
     "start:watch": "nodemon server/index.js",
     "build": "webpack --debug --devtool inline-source-map --output-pathinfo --mode development",
     "build:watch": "webpack --debug --devtool inline-source-map --output-pathinfo --watch --mode development",
-    "postgresql:seed": "psql seabnb -f db/SDC_postgreSQL/createTableSchema.sql && node db/SDC_postgreSQL/seed.js"
+    "postgresql:seed": "psql seabnb -f db/SDC_postgreSQL/createTableSchema.sql && node db/SDC_postgreSQL/seed.js",
+    "mongo:seed": "node db/SDC/realSeed.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

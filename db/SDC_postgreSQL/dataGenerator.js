@@ -96,8 +96,6 @@ const generateOneSimilarListing = id => ({
                     `?image=${getRandomNum(0, 1000)}`,
 });
 
-const insertIntoDatabase = (collection, array) => collection.insertMany(array);
-
 const batchInsertSimilarListings = (batchNumber, collection) => {
   const similarListings = [];
 

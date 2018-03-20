@@ -113,12 +113,15 @@ const batchInsertSimilarListings = (batchNumber, collection) => {
 };
 
 const generateTenMilSimilarListings = async (collection, time) => {
-  for (let i = 0; i < 10000; i += 1) {
+  for (let i = 0; i < 100; i += 1) {
     await batchInsertSimilarListings(i, collection);
     console.log(`just finished inserting batch ${i}`);
   }
   const timeNow = new Date().getTime();
-  console.log(`${(timeNow - time) / 1000} seconds have passed`);
+  const seconds = (timeNow - time) / 1000; // seconds = 110
+  const minutes = Math.floor(seconds / 60); // minutes = 1
+  const realSeconds = Math.round(seconds - (minutes * 60));
+  console.log(`FINISHED SEEDING. it took ${minutes} minutes and ${realSeconds} seconds to seed 10 million objects into MongoDB`);
 };
 
 module.exports = { generateTenMilSimilarListings };

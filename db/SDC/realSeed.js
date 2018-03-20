@@ -22,7 +22,7 @@ MongoClient.connect(`${url}/${database}`)
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
         collection.createIndex({ id: 1 });
-        console.log('CONGRATS YOU JUST SEEDED 10MILLION');
+        console.log('You also successfully indexed the table!');
         client.close();
       });
   })
