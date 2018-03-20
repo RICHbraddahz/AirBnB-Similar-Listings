@@ -1,7 +1,6 @@
 const pgp = require('pg-promise')({
   capSQL: true // generate capitalized SQL 
 });
-const faker = require('faker');
 const { generateOneSimilarListing } = require('./dataGenerator');
 
 const db = pgp('postgres://localhost:5432/seabnb');
