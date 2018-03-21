@@ -17,7 +17,8 @@
     "build": "webpack --debug --devtool inline-source-map --output-pathinfo --mode development",
     "build:watch": "webpack --debug --devtool inline-source-map --output-pathinfo --watch --mode development",
     "psql:seed": "psql seabnb -f db/PostgreSQL/createTableSchema.sql && node db/PostgreSQL/postgresqlSeed.js",
-    "mongo:seed": "node db/MongoDB/mongoSeed.js"
+    "mongo:seed": "node db/MongoDB/mongoSeed.js",
+    "psql:index": "psql seabnb -f db/PostgreSQL/index.sql"
   },
   "dependencies": {
     "axios": "^0.18.0",
