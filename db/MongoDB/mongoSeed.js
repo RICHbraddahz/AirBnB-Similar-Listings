@@ -21,9 +21,15 @@ MongoClient.connect(`${url}/${database}`)
 
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
-        // collection.createIndex({ id: 1 });
-        console.log('You also successfully indexed the table!');
-        client.close();
+        collection.createIndex({ id: 1 })
+          .then(() => {
+            const timeNow = new Date().getTime();
+            const seconds = (timeNow - startTime) / 1000; // seconds = 110
+            const minutes = Math.floor(seconds / 60); // minutes = 1
+            const realSeconds = Math.round(seconds - (minutes * 60));
+            console.log(`Finished Indexing. it took ${minutes} minutes and ${realSeconds} seconds to seed 10 million objects into MongoDB`);
+            client.close();
+          });
       });
   })
   .catch((e) => {
