@@ -12,7 +12,7 @@ console.log('JUST ABOUT TO CONNECT TO ', database);
 MongoClient.connect(`${url}/${database}`)
   .then((client) => {
     const db = client.db(database);
-    const collection = db.collection('similar-listings');
+    const collection = db.collection('similarlistings');
 
     const startTime = new Date().getTime();
     console.log('SEEDINGGGGGG SEEDINGGGGGGG');
@@ -21,16 +21,17 @@ MongoClient.connect(`${url}/${database}`)
 
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
-        collection.createIndex({ id: 1 });
+        // collection.createIndex({ id: 1 })
         // collection.createIndex( { _id: "hashed" } );
-          .then(() => {
-            const timeNow = new Date().getTime();
-            const seconds = (timeNow - startTime) / 1000; // seconds = 110
-            const minutes = Math.floor(seconds / 60); // minutes = 1
-            const realSeconds = Math.round(seconds - (minutes * 60));
-            console.log(`Finished Indexing. it took ${minutes} minutes and ${realSeconds} seconds to seed 10 million objects into MongoDB`);
-            client.close();
-          });
+          // .then(() => {
+          //   const timeNow = new Date().getTime();
+          //   const seconds = (timeNow - startTime) / 1000; // seconds = 110
+          //   const minutes = Math.floor(seconds / 60); // minutes = 1
+          //   const realSeconds = Math.round(seconds - (minutes * 60));
+          //   console.log(`Finished Indexing. it took ${minutes} minutes and ${realSeconds} seconds to seed 10 million objects into MongoDB`);
+          //   client.close();
+          // });
+          client.close();
       });
   })
   .catch((e) => {
