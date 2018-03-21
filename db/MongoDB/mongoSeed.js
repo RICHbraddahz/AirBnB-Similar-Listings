@@ -21,7 +21,8 @@ MongoClient.connect(`${url}/${database}`)
 
     generateTenMilSimilarListings(collection, startTime)
       .then(() => {
-        collection.createIndex({ id: 1 })
+        collection.createIndex({ id: 1 });
+        // collection.createIndex( { _id: "hashed" } );
           .then(() => {
             const timeNow = new Date().getTime();
             const seconds = (timeNow - startTime) / 1000; // seconds = 110
