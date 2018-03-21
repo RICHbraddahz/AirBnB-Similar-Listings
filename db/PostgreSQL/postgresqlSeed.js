@@ -18,6 +18,7 @@ function getNextData(t, pageIndex) {
       const idx = (pageIndex * 10000) + i; // to insert unique product names
       data.push(generateOneSimilarListing(idx));
     }
+    console.log(`just finished inserting batch ${pageIndex}`);
   }
   return Promise.resolve(data);
 }

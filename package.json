@@ -16,7 +16,7 @@
     "start:watch": "nodemon server/index.js",
     "build": "webpack --debug --devtool inline-source-map --output-pathinfo --mode development",
     "build:watch": "webpack --debug --devtool inline-source-map --output-pathinfo --watch --mode development",
-    "pql:seed": "psql seabnb -f db/PostgreSQL/createTableSchema.sql && node db/PostgreSQL/postgresqlSeed.js",
+    "psql:seed": "psql seabnb -f db/PostgreSQL/createTableSchema.sql && node db/PostgreSQL/postgresqlSeed.js",
     "mongo:seed": "node db/MongoDB/mongoSeed.js"
   },
   "dependencies": {

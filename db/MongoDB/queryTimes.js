@@ -26,7 +26,7 @@ let runBenchmark = async () => {
   let readTimes = [];
 
   for (let i = 0; i < 10000; i += 1) {
-    let readStartTime = new Date();
+    let readStartTime = new Date()
     let randomNum = Math.floor(Math.random() * 10000000);
     await collection.findOne({ id: randomNum });
     let readTime = dateMath.diff(readStartTime, new Date(), 'seconds', true);
