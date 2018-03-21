@@ -22,7 +22,7 @@ const runBenchmark = async () => {
 
   const readTimes = [];
 
-  for (let i = 0; i < 25; i += 1) {
+  for (let i = 0; i < 10000; i += 1) {
     const readStartTime = new Date();
     const randomNum = Math.floor(Math.random() * 10000000);
     try {
