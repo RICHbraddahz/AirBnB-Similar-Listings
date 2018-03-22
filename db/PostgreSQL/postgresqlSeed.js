@@ -1,5 +1,5 @@
 const pgp = require('pg-promise')({
-  capSQL: true // generate capitalized SQL 
+  capSQL: true
 });
 const { generateOneSimilarListing } = require('./dataGenerator');
 
