@@ -18,7 +18,9 @@
     "build:watch": "webpack --debug --devtool inline-source-map --output-pathinfo --watch --mode development",
     "psql:seed": "psql seabnb -f db/PostgreSQL/createTableSchema.sql && node db/PostgreSQL/postgresqlSeed.js",
     "mongo:seed": "node db/MongoDB/mongoSeed.js",
-    "psql:index": "psql seabnb -f db/PostgreSQL/index.sql"
+    "psql:index": "psql seabnb -f db/PostgreSQL/index.sql",
+    "mongo:query": "node db/MongoDB/queryTimes.js",
+    "psql:query": "node db/PostgreSQL/queryTimes.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
