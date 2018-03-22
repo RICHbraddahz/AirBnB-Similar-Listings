@@ -32,12 +32,29 @@ const similarListingSchema = mongoose.Schema({
 //       callback(error);
 //     }
 //   },
-// );
+
+const getRandomNum = (min, max, decimalPlaces) => {
+  decimalPlaces = decimalPlaces || 0;
+  let multiplier = Math.pow(10, decimalPlaces);
+  let minAdj = min * multiplier;
+  let maxAdj = ((max - 1) * multiplier) + 1;
+
+  let randomNumAdj = Math.floor(Math.random() * (maxAdj - minAdj)) + minAdj;
+  return randomNumAdj / multiplier;
+};
 
 const similarlistings = mongoose.model('similarlistings', similarListingSchema);
 
 const query = async (id) => {
-  const data = await similarlistings.find({ id: id });
+  const data = await similarlistings.find({
+    id: {
+      $in: [
+        id,
+        getRandomNum(0, 10000000),
+        getRandomNum(0, 10000000),
+      ],
+    },
+  });
   // console.log(data);
   return data;
 };
