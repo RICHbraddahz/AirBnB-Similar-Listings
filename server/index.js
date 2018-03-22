@@ -34,8 +34,19 @@ app.use(bodyParser.json());
 
 app.get('/listings/:id/similar_listings', (req, res) => {
   const { id } = req.params;
-  const data = listings(id);
-  res.send(data);
+  const similarListings = [];
+  if (id < 9999998) {
+    listings(id).then((data) => {
+      similarListings.push(data);
+    });
+    listings(id + 1).then((data) => {
+      similarListings.push(data);
+    });
+    listings(id + 2).then((data) => {
+      similarListings.push(data);
+      res.send(similarListings);
+    });
+  }
 });
 
 mongoose.connect('mongodb://localhost/seabnb');

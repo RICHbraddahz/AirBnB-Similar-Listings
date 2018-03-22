@@ -38,7 +38,7 @@ const similarlistings = mongoose.model('similarlistings', similarListingSchema);
 
 const query = async (id) => {
   const data = await similarlistings.find({ id: id });
-  console.log(data);
+  // console.log(data);
   return data;
 };
 // const ListingModel = mongoose.model('similarlistings', listingSchema);

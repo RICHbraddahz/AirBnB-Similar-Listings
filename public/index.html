@@ -15,15 +15,14 @@
         const parts = path.split('/');
         if (parts[1] === 'listings') {
           const id = parseInt(parts[2], 10);
-          if (typeof id === 'number' && id >= 0 && id < 200) {
+          if (typeof id === 'number' && id >= 0 && id < 10000000) {
             return id;
           }
         }
         return null;
       };
 
-      const listingId = getListingId(window.location.pathname) ||
-                  Math.floor(Math.random() * 200);
+      const listingId = getListingId(window.location.pathname);
       console.log('listing id shown:', listingId);
 
       ReactDOM.render(
