@@ -5,7 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-const listings = require('../db/listing');
+const listings = require('../db/listing').query;
 
 const PORT = parseInt(process.env.PORT, 10);
 const DB_NAME = process.env.DB_NAME;
@@ -22,15 +22,21 @@ app.use('/listings/:id', express.static(PUBLIC_DIR));
 app.use(express.static(PUBLIC_DIR));
 app.use(bodyParser.json());
 
-app.get('/listings/:id/similar_listings', async ({ params: { id } }, res) => {
-  try {
-    const similarListings = await listings.getSimilarListingsAsync(id);
-    res.send(similarListings);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error);
-  }
+// app.get('/listings/:id/similar_listings', async ({ params: { id } }, res) => {
+//   try {
+//     const similarListings = await listings.getSimilarListingsAsync(id);
+//     res.send(similarListings);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(error);
+//   }
+// });
+
+app.get('/listings/:id/similar_listings', (req, res) => {
+  const { id } = req.params;
+  const data = listings(id);
+  res.send(data);
 });
 
-mongoose.connect(`mongodb://localhost/${DB_NAME}`);
+mongoose.connect('mongodb://localhost/seabnb');
 const server = app.listen(PORT, HOST, () => console.log(`listening on ${HOST}:${PORT}`));

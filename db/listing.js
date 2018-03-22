@@ -15,25 +15,33 @@ const similarListingSchema = mongoose.Schema({
   thumbnailImage: String,
 });
 
-const listingSchema = mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true,
-  },
-  similarListings: [similarListingSchema],
-});
+// const listingSchema = mongoose.Schema({
+//   id: {
+//     type: Number,
+//     unique: true,
+//   },
+//   similarListings: [similarListingSchema],
+// });
 
-listingSchema.statics.getSimilarListingsAsync = Promise.promisify(
-  async function getSimilarListings(listingId, callback) {
-    try {
-      const [{ similarListings }] = await this.find({ id: listingId });
-      callback(null, similarListings);
-    } catch (error) {
-      callback(error);
-    }
-  },
-);
+// listingSchema.statics.getSimilarListingsAsync = Promise.promisify(
+//   async function getSimilarListings(listingId, callback) {
+//     try {
+//       const [{ similarListings }] = await this.find({ id: listingId });
+//       callback(null, similarListings);
+//     } catch (error) {
+//       callback(error);
+//     }
+//   },
+// );
 
-const ListingModel = mongoose.model('Listing', listingSchema);
+const similarlistings = mongoose.model('similarlistings', similarListingSchema);
 
-module.exports = ListingModel;
+const query = async (id) => {
+  const data = await similarlistings.find({ id: id });
+  console.log(data);
+  return data;
+};
+// const ListingModel = mongoose.model('similarlistings', listingSchema);
+
+// module.exports = ListingModel;
+module.exports.query = query;
