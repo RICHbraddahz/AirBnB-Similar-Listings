@@ -55,7 +55,6 @@ const query = async (id) => {
       ],
     },
   });
-  // console.log(data);
   return data;
 };
 // const ListingModel = mongoose.model('similarlistings', listingSchema);
