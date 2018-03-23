@@ -50,8 +50,8 @@ const query = async (id) => {
     id: {
       $in: [
         id,
-        getRandomNum(0, 10000000),
-        getRandomNum(0, 10000000),
+        id + 1,
+        id + 2,
       ],
     },
   });
