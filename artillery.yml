@@ -1,8 +1,8 @@
 config:
   target: "http://localhost:3003"
   phases:
-    - duration: 3
-      arrivalRate: 2000
+    - duration: 2
+      arrivalRate: 100
   processor: "./fakeIds.js"
 scenarios:
   - flow:
@@ -10,4 +10,4 @@ scenarios:
       - function: "generateRandomId"
       - get:
           url: "/listings/{{ id }}/similar_listings"
-        count: 1
+      count: 2
