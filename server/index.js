@@ -1,7 +1,7 @@
 const nr = require('newrelic');
 const mongoose = require('mongoose');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -19,7 +19,7 @@ const PUBLIC_DIR = path.join(__dirname, '../public');
 
 // app.use(morgan('dev'));
 app.use(cors(`http://${HOST}:${PROXY_PORT}`))
-app.use('/listings/:id', express.static(PUBLIC_DIR));
+// app.use('/listings/:id', express.static(PUBLIC_DIR));
 app.use(express.static(PUBLIC_DIR));
 app.use(bodyParser.json());
 
