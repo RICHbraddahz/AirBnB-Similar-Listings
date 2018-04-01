@@ -18,10 +18,10 @@ const app = express();
 const PUBLIC_DIR = path.join(__dirname, '../public');
 
 // app.use(morgan('dev'));
-app.use(cors(`http://${HOST}:${PROXY_PORT}`))
+// app.use(cors(`http://${HOST}:${PROXY_PORT}`))
 // app.use('/listings/:id', express.static(PUBLIC_DIR));
 app.use(express.static(PUBLIC_DIR));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 // app.get('/listings/:id/similar_listings', async ({ params: { id } }, res) => {
 //   try {

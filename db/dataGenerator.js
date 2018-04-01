@@ -49,7 +49,6 @@ const settings = {
     min: 0,
     max: 2000, // non-inclusive
   },
-
   avgStars: {
     min: 0,
     max: 6, // non-inclusive
