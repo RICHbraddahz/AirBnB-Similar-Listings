@@ -54,7 +54,6 @@ const settings = {
     max: 6, // non-inclusive
     decimalPlaces: 1,
   },
-
   thumbnailImage: {
     width: 316,
     height: 210,
