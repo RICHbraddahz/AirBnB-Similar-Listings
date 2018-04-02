@@ -44,7 +44,6 @@ const getRandomNum = (min, max, decimalPlaces) => {
 };
 
 const similarlistings = mongoose.model('similarlistings', similarListingSchema);
-
 const query = async (id) => {
   const data = await similarlistings.find({
     id: {
