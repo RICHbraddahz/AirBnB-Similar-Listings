@@ -15,24 +15,6 @@ const similarListingSchema = mongoose.Schema({
   thumbnailImage: String,
 });
 
-// const listingSchema = mongoose.Schema({
-//   id: {
-//     type: Number,
-//     unique: true,
-//   },
-//   similarListings: [similarListingSchema],
-// });
-
-// listingSchema.statics.getSimilarListingsAsync = Promise.promisify(
-//   async function getSimilarListings(listingId, callback) {
-//     try {
-//       const [{ similarListings }] = await this.find({ id: listingId });
-//       callback(null, similarListings);
-//     } catch (error) {
-//       callback(error);
-//     }
-//   },
-
 const getRandomNum = (min, max, decimalPlaces) => {
   decimalPlaces = decimalPlaces || 0;
   let multiplier = Math.pow(10, decimalPlaces);
@@ -61,3 +43,23 @@ const query = async (id) => {
 
 // module.exports = ListingModel;
 module.exports.query = query;
+
+
+
+// const listingSchema = mongoose.Schema({
+//   id: {
+//     type: Number,
+//     unique: true,
+//   },
+//   similarListings: [similarListingSchema],
+// });
+
+// listingSchema.statics.getSimilarListingsAsync = Promise.promisify(
+//   async function getSimilarListings(listingId, callback) {
+//     try {
+//       const [{ similarListings }] = await this.find({ id: listingId });
+//       callback(null, similarListings);
+//     } catch (error) {
+//       callback(error);
+//     }
+//   },
