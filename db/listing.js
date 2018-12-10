@@ -39,12 +39,11 @@ const query = async (id) => {
   });
   return data;
 };
+
 // const ListingModel = mongoose.model('similarlistings', listingSchema);
 
 // module.exports = ListingModel;
 module.exports.query = query;
-
-
 
 // const listingSchema = mongoose.Schema({
 //   id: {
