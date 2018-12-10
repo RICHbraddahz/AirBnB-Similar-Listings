@@ -13,7 +13,7 @@ const getRandomNum = (min, max, decimalPlaces) => {
   return randomNumAdj / multiplier;
 };
 
-// pick a random item from an array
+// pick a random item from an array to choose from
 const pickRandomItem = array => {
   return array[getRandomNum(0, array.length)];
 };
