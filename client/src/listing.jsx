@@ -39,5 +39,4 @@ Listing.propTypes = {
   thumbnailImage: PropTypes.string, // TODO: default image if none provided
   additionalDetails: PropTypes.object.isRequired,
 };
-
 export default Listing;
